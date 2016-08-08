@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Pluss</title>
+		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link href="css/pluss.css" rel="stylesheet" type="text/css" />
+		<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+        <![endif]-->
+	</head>
+	<body>
+		<div id="Wrapper">
+			<header>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-4 col-sm-3">
+							<a href="index.html" class="logo"><img src="images/logo.png" /></a>
+						</div>
+						<div class="col-md-8 col-sm-9">
+							<div class="nav top_links">
+								<ul class="list-inline text-right margin0 t_link_ul">
+									<li><a href="index.html">HOME</a></li>
+									<!--<li><a href="index.html" class="feature_link">FEATURES</a></li>-->
+									<li class="active"><a href="contact_us.html">CONTACT US</a></li>
+									<li class="app_download"><a href="#">DOWNLOAD APP</a></li>
+								</ul>
+								<span class="side_menu"><img src="images/menu.png"/></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div id="middle">
+				<div class="gray_bg">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="pluss_location">
+									<div id="googleMap" class="pluss_map"></div>
+									<div class="location_text">
+										<h2>Pluss Pvt. Ltd.</h2>
+										<p>Udyog Vihar Phase V, Sector 19,<br/> Gurgaon, Haryana</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="btm_stirp"></div>
+					<footer>
+						<div class="container">
+							<div class="row">
+								<div class="col-md-6 col-sm-5">
+									<div class="btm_link text-left">
+										<ul class="list-inline scale_content">
+											<li><a href="index.html">Home</a></li>
+											<li><a href="#">About</a></li>
+											<li><a href="jobs.html">Jobs</a></li>
+											<li><a href="contact_us.html">Contact Us</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="col-md-6 col-sm-7">
+									<div class="text-right scale_content social_icons_spn">
+										<small>Copyright &copy; 2015 Pluss Pvt. Ltd. All rights reserved.</small>&nbsp;
+										<a href="#"><span class="fb_icon"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><span class="tweeter_icon"></span></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</div>
+		</div>
+		<div class="hidden_menu">
+			<ul class="side_ul">
+				<li><a href="index.html">Home</a></li>
+				<!--<li><a href="#" class="feature_link">Features</a></li>-->
+				<li><a href="contact_us.html">Contact Us</a></li>
+				<li><a href="#">Download App</a></li>
+			</ul>
+		</div>
+		<script src="js/jquery1.9.1.js"></script>
+		<script src="http://maps.googleapis.com/maps/api/js"></script>
+		<script>
+			$(document).ready(function(){
+				$('.side_menu').click(function(){
+					$('.hidden_menu').toggleClass('active');
+					$('body').toggleClass('active');
+					$('header').toggleClass('active');
+				});
+				$('.side_ul a').click(function(){
+					$('.hidden_menu').removeClass('active');
+					$('body').removeClass('active');
+					$('header').removeClass('active');
+				});
+				$('.feature_link').click(function(){
+					$('body,html').animate({
+						scrollTop:$('.features_division').offset().top - 100
+					},500);
+				});
+					h = $('.features_division').offset().top - 105
+				$(window).scroll(function(){
+					if($(window).scrollTop() > h)
+					{
+						$('.feature_link').parent().addClass('active');
+						$('.feature_link').parent().prev('li').removeClass('active');
+					}
+					else
+					{
+						$('.feature_link').parent().removeClass('active');
+						$('.feature_link').parent().prev('li').addClass('active');
+					}
+				});
+				
+			});
+			
+		</script>
+		<script>
+			var myCenter=new google.maps.LatLng(28.502674,77.086341);
+
+			function initialize()
+			{
+			var mapProp = {
+			  center:myCenter,
+			  zoom:11,
+			  mapTypeId:google.maps.MapTypeId.ROADMAP
+			  };
+
+			var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+			var marker=new google.maps.Marker({
+			  position:myCenter,
+			  icon:'images/map_pointer.png'
+			  });
+
+			marker.setMap(map);
+			}
+
+			google.maps.event.addDomListener(window, 'load', initialize);
+		</script>
+	</body>
+</html>
